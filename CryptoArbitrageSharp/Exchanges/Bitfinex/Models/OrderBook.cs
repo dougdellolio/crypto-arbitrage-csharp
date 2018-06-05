@@ -15,8 +15,6 @@ namespace CryptoArbitrageSharp.Exchanges.Bitfinex.Models
         public decimal Price { get; set; }
 
         public decimal Amount { get; set; }
-
-        //public DateTime Timestamp { get; set; }
     }
 
     public class Ask
@@ -24,7 +22,5 @@ namespace CryptoArbitrageSharp.Exchanges.Bitfinex.Models
         public decimal Price { get; set; }
 
         public decimal Amount { get; set; }
-
-        //public DateTime Timestamp { get; set; }
     }
 }
