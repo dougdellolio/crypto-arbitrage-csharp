@@ -15,7 +15,7 @@ namespace CryptoArbitrageSharp.Exchanges.Kraken
 
         public override async Task<BestExchangeQuote> Get()
         {
-            var orderBook = await GetOrderBook<OrderBook>("https://api.kraken.com/0/public/Depth?pair=XLTCXXBT");
+            var orderBook = await GetOrderBook<OrderBook>(ExchangeEndpointBase.Kraken + "public/Depth?pair=XLTCXXBT");
 
             var bestBid = orderBook.Result.Pair.Bids.Select(p => p).Select(p => p.FirstOrDefault()).Max();
             var bestAsk = orderBook.Result.Pair.Asks.Select(p => p).Select(p => p.FirstOrDefault()).Max();
