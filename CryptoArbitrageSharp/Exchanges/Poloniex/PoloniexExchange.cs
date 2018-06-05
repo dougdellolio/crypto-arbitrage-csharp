@@ -7,7 +7,7 @@ namespace CryptoArbitrageSharp.Exchanges.Poloniex
     public class PoloniexExchange : AbstractExchange
     {
         public PoloniexExchange(
-            IHttpClient httpClient, 
+            IHttpClient httpClient,
             IHttpRequestMessageService httpRequestMessageService)
                 : base(httpClient, httpRequestMessageService)
         {
@@ -15,7 +15,7 @@ namespace CryptoArbitrageSharp.Exchanges.Poloniex
 
         public override async Task<BestExchangeQuote> Get()
         {
-            var orderBook = await GetOrderBook<OrderBook>("https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_LTC&depth=10");
+            var orderBook = await GetOrderBook<OrderBook>(ExchangeEndpointBase.Poloniex + "public?command=returnOrderBook&currencyPair=BTC_LTC&depth=10");
 
             var bestBid = orderBook.Bids.Select(p => p.First()).Max();
             var bestAsk = orderBook.Asks.Select(p => p.First()).Max();

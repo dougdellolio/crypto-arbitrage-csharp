@@ -1,5 +1,8 @@
 ﻿using System.Threading.Tasks;
 using CryptoArbitrageSharp.Calculator;
+using CryptoArbitrageSharp.Exchanges.Binance;
+using CryptoArbitrageSharp.Exchanges.Bitfinex;
+using CryptoArbitrageSharp.Exchanges.Bitstamp;
 using CryptoArbitrageSharp.Exchanges.Bittrex;
 using CryptoArbitrageSharp.Exchanges.CoinExchange;
 using CryptoArbitrageSharp.Exchanges.GDAX;
@@ -36,12 +39,24 @@ namespace CryptoArbitrageSharp
             var poloniexExchange = new PoloniexExchange(httpClient, httpRequestMessageService);
             var poloniexExchangeResult = await poloniexExchange.Get();
 
+            var binanceExchange = new BinanceExchange(httpClient, httpRequestMessageService);
+            var binanceExchangeResult = await binanceExchange.Get();
+
+            var bitfinexExchange= new BitfinexExchange(httpClient, httpRequestMessageService);
+            var bitfinexExchangeResult = await bitfinexExchange.Get();
+
+            var bitstampExchange = new BitstampExchange(httpClient, httpRequestMessageService);
+            var bitstampExchangeResult = await bitstampExchange.Get();
+
             var result = arbitrageCalculator.Calculate(
                 bittrexResult, 
                 gdaxResult, 
                 coinExchangeExchangeResult, 
                 krakenExchangeResult,
-                poloniexExchangeResult);
+                poloniexExchangeResult,
+                binanceExchangeResult,
+                bitfinexExchangeResult,
+                bitstampExchangeResult);
 
             return result;
         }

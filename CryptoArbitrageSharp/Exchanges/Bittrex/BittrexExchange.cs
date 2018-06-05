@@ -15,7 +15,7 @@ namespace CryptoArbitrageSharp.Exchanges.Bittrex
 
         public override async Task<BestExchangeQuote> Get()
         {
-            var orderBook = await GetOrderBook<OrderBook>("https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-LTC&type=both");
+            var orderBook = await GetOrderBook<OrderBook>(ExchangeEndpointBase.Bittrex +"public/getorderbook?market=BTC-LTC&type=both");
 
             var bestBid = orderBook.Result.Buy.Max(p => p.Rate);
             var bestAsk = orderBook.Result.Sell.Max(p => p.Rate);
