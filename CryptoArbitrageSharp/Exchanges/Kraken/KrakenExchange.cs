@@ -6,16 +6,21 @@ namespace CryptoArbitrageSharp.Exchanges.Kraken
 {
     public class KrakenExchange : AbstractExchange
     {
+        private readonly ICurrencyPairService currencyPairService;
+
         public KrakenExchange(
             IHttpClient httpClient, 
-            IHttpRequestMessageService httpRequestMessageService)
+            IHttpRequestMessageService httpRequestMessageService,
+            ICurrencyPairService currencyPairService)
                 : base(httpClient, httpRequestMessageService)
         {
+            this.currencyPairService = currencyPairService;
         }
 
-        public override async Task<BestExchangeQuote> Get()
+        public override async Task<BestExchangeQuote> Get(CurrencyPair currencyPair)
         {
-            var orderBook = await GetOrderBook<OrderBook>(ExchangeEndpointBase.Kraken + "public/Depth?pair=XLTCXXBT");
+            var pair = currencyPairService.GetCurrencyPair(Exchange.Kraken, currencyPair);
+            var orderBook = await GetOrderBook<OrderBook>(ExchangeEndpointBase.Kraken + $"public/Depth?pair={pair}");
 
             var bestBid = orderBook.Result.Pair.Bids.Select(p => p).Select(p => p.FirstOrDefault()).Max();
             var bestAsk = orderBook.Result.Pair.Asks.Select(p => p).Select(p => p.FirstOrDefault()).Max();

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CryptoArbitrageSharp;
 using CryptoArbitrageSharp.Calculator;
+using CryptoArbitrageSharp.Exchanges;
 
 namespace ConsoleApp1
 {
@@ -10,7 +11,7 @@ namespace ConsoleApp1
         static void Main()
         {
             var client = new ArbitrageClient(new ArbitrageCalculator());
-            var task = Task.Run(() => client.Get());
+            var task = Task.Run(() => client.Get(CurrencyPair.LtcBtc));
             task.Wait();
 
             Console.WriteLine($"Lowest bid on {task.Result.bestBid.Exchange} @ {task.Result.bestBid.BestBid}");
