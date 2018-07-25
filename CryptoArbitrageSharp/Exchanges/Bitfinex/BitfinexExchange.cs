@@ -27,7 +27,5 @@ namespace CryptoArbitrageSharp.Exchanges.Bitfinex
 
             return new BestExchangeQuote(Exchange.Bitfinex.Name, bestBid, bestAsk);
         }
-
-        //get me pair for currency pair
     }
 }
