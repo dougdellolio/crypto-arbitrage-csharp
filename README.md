@@ -15,4 +15,4 @@ Supported Exchanges:
 
 Supported Currency Pairs:
 
-- LTC/USD
+- LTC/BTC

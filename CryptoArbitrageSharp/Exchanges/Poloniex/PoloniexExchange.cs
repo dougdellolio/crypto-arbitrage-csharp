@@ -6,16 +6,21 @@ namespace CryptoArbitrageSharp.Exchanges.Poloniex
 {
     public class PoloniexExchange : AbstractExchange
     {
+        private readonly ICurrencyPairService currencyPairService;
+
         public PoloniexExchange(
             IHttpClient httpClient,
-            IHttpRequestMessageService httpRequestMessageService)
+            IHttpRequestMessageService httpRequestMessageService,
+            ICurrencyPairService currencyPairService)
                 : base(httpClient, httpRequestMessageService)
         {
+            this.currencyPairService = currencyPairService;
         }
 
-        public override async Task<BestExchangeQuote> Get()
+        public override async Task<BestExchangeQuote> Get(CurrencyPair currencyPair)
         {
-            var orderBook = await GetOrderBook<OrderBook>(ExchangeEndpointBase.Poloniex + "public?command=returnOrderBook&currencyPair=BTC_LTC&depth=10");
+            var pair = currencyPairService.GetCurrencyPair(Exchange.Poloniex, currencyPair);
+            var orderBook = await GetOrderBook<OrderBook>(ExchangeEndpointBase.Poloniex + $"public?command=returnOrderBook&currencyPair={pair}&depth=10");
 
             var bestBid = orderBook.Bids.Select(p => p.First()).Max();
             var bestAsk = orderBook.Asks.Select(p => p.First()).Max();

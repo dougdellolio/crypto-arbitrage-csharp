@@ -25,6 +25,6 @@ namespace CryptoArbitrageSharp.Exchanges
             return JsonConvert.DeserializeObject<T>(contentBody);
         }
 
-        public abstract Task<BestExchangeQuote> Get();
+        public abstract Task<BestExchangeQuote> Get(CurrencyPair currentPair);
     }
 }
