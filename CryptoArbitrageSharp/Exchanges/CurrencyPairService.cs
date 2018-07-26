@@ -15,7 +15,7 @@ namespace CryptoArbitrageSharp.Exchanges
             {
                 { Exchange.Binance, new []
                     {
-                        (CurrencyPair.LtcBtc, "ltcbtc")
+                        (CurrencyPair.LtcBtc, "LTCBTC")
                     }
                 },
                 { Exchange.Bitfinex, new []
