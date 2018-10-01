@@ -19,7 +19,7 @@ Supported Currency Pairs:
 
 ###### Example: ######
 
-````
+````csharp
 var client = new ArbitrageClient(new ArbitrageCalculator());
 var task = Task.Run(() => client.Get(CurrencyPair.LtcBtc));
 task.Wait();
