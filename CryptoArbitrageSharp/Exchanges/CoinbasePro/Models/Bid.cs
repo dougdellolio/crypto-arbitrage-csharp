@@ -1,8 +1,8 @@
-﻿namespace CryptoArbitrageSharp.Exchanges.GDAX.Models
+﻿namespace CryptoArbitrageSharp.Exchanges.CoinbasePro.Models
 {
-    public class Ask : Quote
+    public class Bid : Quote
     {
-        public Ask(
+        public Bid(
             decimal price,
             decimal size)
                 : base(price, size)

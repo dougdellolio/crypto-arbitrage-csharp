@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CryptoArbitrageSharp.Exchanges.GDAX.Models
+namespace CryptoArbitrageSharp.Exchanges.CoinbasePro.Models
 {
     public class Quote
     {

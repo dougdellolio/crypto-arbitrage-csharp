@@ -1,14 +1,14 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using CryptoArbitrageSharp.Exchanges.GDAX.Models;
+using CryptoArbitrageSharp.Exchanges.CoinbasePro.Models;
 
-namespace CryptoArbitrageSharp.Exchanges.GDAX
+namespace CryptoArbitrageSharp.Exchanges.CoinbasePro
 {
-    public class GdaxExchange : AbstractExchange
+    public class CoinbaseProExchange : AbstractExchange
     {
         private readonly ICurrencyPairService currencyPairService;
 
-        public GdaxExchange(
+        public CoinbaseProExchange(
             IHttpClient httpClient,
             IHttpRequestMessageService httpRequestMessageService,
             ICurrencyPairService currencyPairService)
@@ -19,13 +19,13 @@ namespace CryptoArbitrageSharp.Exchanges.GDAX
 
         public override async Task<BestExchangeQuote> Get(CurrencyPair currencyPair)
         {
-            var pair = currencyPairService.GetCurrencyPair(Exchange.Gdax, currencyPair);
-            var orderBook = await GetOrderBook<OrderBook>(ExchangeEndpointBase.Gdax + $"products/{pair}/book");
+            var pair = currencyPairService.GetCurrencyPair(Exchange.CoinbasePro, currencyPair);
+            var orderBook = await GetOrderBook<OrderBook>(ExchangeEndpointBase.CoinbasePro + $"products/{pair}/book");
 
             var bestBid = orderBook.Bids.First().First();
             var bestAsk = orderBook.Asks.First().First();
 
-            return new BestExchangeQuote(Exchange.Gdax.Name, bestBid, bestAsk);
+            return new BestExchangeQuote(Exchange.CoinbasePro.Name, bestBid, bestAsk);
         }
     }
 }

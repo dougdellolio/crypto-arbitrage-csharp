@@ -38,7 +38,7 @@ namespace CryptoArbitrageSharp.Exchanges
                         (CurrencyPair.LtcBtc, "18")
                     }
                 },
-                { Exchange.Gdax, new []
+                { Exchange.CoinbasePro, new []
                     {
                         (CurrencyPair.LtcBtc, "LTC-BTC")
                     }

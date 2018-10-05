@@ -1,4 +1,4 @@
-﻿namespace CryptoArbitrageSharp.Exchanges
+﻿namespace CryptoArbitrageSharp
 {
     public enum CurrencyPair
     {

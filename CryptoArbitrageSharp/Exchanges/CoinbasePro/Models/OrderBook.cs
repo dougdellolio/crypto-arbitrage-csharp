@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CryptoArbitrageSharp.Exchanges.GDAX.Models
+namespace CryptoArbitrageSharp.Exchanges.CoinbasePro.Models
 {
     public class OrderBook
     {
