@@ -27,7 +27,7 @@ namespace CryptoArbitrageSharp
             var currencyPairService = new CurrencyPairService();
 
             var bittrexExchange = new BittrexExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var gdaxExchange = new CoinbaseProExchange(httpClient, httpRequestMessageService, currencyPairService);
+            var coinbaseProExchange = new CoinbaseProExchange(httpClient, httpRequestMessageService, currencyPairService);
             var coinExchangeExchange = new CoinExchangeExchange(httpClient, httpRequestMessageService, currencyPairService);
             var krakenExchange = new CoinExchangeExchange(httpClient, httpRequestMessageService, currencyPairService);
             var poloniexExchange = new PoloniexExchange(httpClient, httpRequestMessageService, currencyPairService);
@@ -37,7 +37,7 @@ namespace CryptoArbitrageSharp
 
             var exchangeResults = await Task.WhenAll(
                 bittrexExchange.Get(currencyPair),
-                gdaxExchange.Get(currencyPair),
+                coinbaseProExchange.Get(currencyPair),
                 coinExchangeExchange.Get(currencyPair),
                 krakenExchange.Get(currencyPair),
                 poloniexExchange.Get(currencyPair),
