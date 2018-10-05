@@ -5,8 +5,8 @@ using CryptoArbitrageSharp.Exchanges.Binance;
 using CryptoArbitrageSharp.Exchanges.Bitfinex;
 using CryptoArbitrageSharp.Exchanges.Bitstamp;
 using CryptoArbitrageSharp.Exchanges.Bittrex;
+using CryptoArbitrageSharp.Exchanges.CoinbasePro;
 using CryptoArbitrageSharp.Exchanges.CoinExchange;
-using CryptoArbitrageSharp.Exchanges.GDAX;
 using CryptoArbitrageSharp.Exchanges.Poloniex;
 
 namespace CryptoArbitrageSharp
@@ -27,7 +27,7 @@ namespace CryptoArbitrageSharp
             var currencyPairService = new CurrencyPairService();
 
             var bittrexExchange = new BittrexExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var gdaxExchange = new GdaxExchange(httpClient, httpRequestMessageService, currencyPairService);
+            var gdaxExchange = new CoinbaseProExchange(httpClient, httpRequestMessageService, currencyPairService);
             var coinExchangeExchange = new CoinExchangeExchange(httpClient, httpRequestMessageService, currencyPairService);
             var krakenExchange = new CoinExchangeExchange(httpClient, httpRequestMessageService, currencyPairService);
             var poloniexExchange = new PoloniexExchange(httpClient, httpRequestMessageService, currencyPairService);

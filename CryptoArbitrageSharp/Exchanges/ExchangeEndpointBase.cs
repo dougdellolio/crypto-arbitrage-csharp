@@ -12,7 +12,7 @@
 
         public const string CoinExchange = "https://www.coinexchange.io/api/v1/";
 
-        public const string Gdax = "https://api.gdax.com/";
+        public const string CoinbasePro = "https://api.pro.coinbase.com/";
 
         public const string Kraken = "https://api.kraken.com/0/";
 

@@ -2,7 +2,7 @@
 {
     public class Exchange
     {
-        public static readonly Exchange Gdax = new Exchange("GDAX");
+        public static readonly Exchange CoinbasePro = new Exchange("CoinbasePro");
 
         public static readonly Exchange CoinExchange = new Exchange("CoinExchange");
 
