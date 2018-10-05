@@ -27,38 +27,33 @@ namespace CryptoArbitrageSharp
             var currencyPairService = new CurrencyPairService();
 
             var bittrexExchange = new BittrexExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var bittrexResult = await bittrexExchange.Get(currencyPair);
-
             var gdaxExchange = new GdaxExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var gdaxResult = await gdaxExchange.Get(currencyPair);
-
             var coinExchangeExchange = new CoinExchangeExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var coinExchangeExchangeResult = await coinExchangeExchange.Get(currencyPair);
-
             var krakenExchange = new CoinExchangeExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var krakenExchangeResult = await krakenExchange.Get(currencyPair);
-
             var poloniexExchange = new PoloniexExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var poloniexExchangeResult = await poloniexExchange.Get(currencyPair);
-
             var binanceExchange = new BinanceExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var binanceExchangeResult = await binanceExchange.Get(currencyPair);
-
             var bitfinexExchange= new BitfinexExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var bitfinexExchangeResult = await bitfinexExchange.Get(currencyPair);
-
             var bitstampExchange = new BitstampExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var bitstampExchangeResult = await bitstampExchange.Get(currencyPair);
+
+            var exchangeResults = await Task.WhenAll(
+                bittrexExchange.Get(currencyPair),
+                gdaxExchange.Get(currencyPair),
+                coinExchangeExchange.Get(currencyPair),
+                krakenExchange.Get(currencyPair),
+                poloniexExchange.Get(currencyPair),
+                binanceExchange.Get(currencyPair),
+                bitfinexExchange.Get(currencyPair),
+                bitstampExchange.Get(currencyPair));
 
             var result = arbitrageCalculator.Calculate(
-                bittrexResult, 
-                gdaxResult, 
-                coinExchangeExchangeResult, 
-                krakenExchangeResult,
-                poloniexExchangeResult,
-                binanceExchangeResult,
-                bitfinexExchangeResult,
-                bitstampExchangeResult);
+                exchangeResults[0],
+                exchangeResults[1],
+                exchangeResults[2],
+                exchangeResults[3],
+                exchangeResults[4],
+                exchangeResults[5],
+                exchangeResults[6],
+                exchangeResults[7]);
 
             return result;
         }
