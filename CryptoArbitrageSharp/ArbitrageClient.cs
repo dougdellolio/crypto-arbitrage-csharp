@@ -7,6 +7,7 @@ using CryptoArbitrageSharp.Exchanges.Bitstamp;
 using CryptoArbitrageSharp.Exchanges.Bittrex;
 using CryptoArbitrageSharp.Exchanges.CoinbasePro;
 using CryptoArbitrageSharp.Exchanges.CoinExchange;
+using CryptoArbitrageSharp.Exchanges.Kraken;
 using CryptoArbitrageSharp.Exchanges.Poloniex;
 
 namespace CryptoArbitrageSharp
@@ -28,8 +29,7 @@ namespace CryptoArbitrageSharp
 
             var bittrexExchange = new BittrexExchange(httpClient, httpRequestMessageService, currencyPairService);
             var coinbaseProExchange = new CoinbaseProExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var coinExchangeExchange = new CoinExchangeExchange(httpClient, httpRequestMessageService, currencyPairService);
-            var krakenExchange = new CoinExchangeExchange(httpClient, httpRequestMessageService, currencyPairService);
+            var krakenExchange = new KrakenExchange(httpClient, httpRequestMessageService, currencyPairService);
             var poloniexExchange = new PoloniexExchange(httpClient, httpRequestMessageService, currencyPairService);
             var binanceExchange = new BinanceExchange(httpClient, httpRequestMessageService, currencyPairService);
             var bitfinexExchange= new BitfinexExchange(httpClient, httpRequestMessageService, currencyPairService);
@@ -38,7 +38,6 @@ namespace CryptoArbitrageSharp
             var exchangeResults = await Task.WhenAll(
                 bittrexExchange.Get(currencyPair),
                 coinbaseProExchange.Get(currencyPair),
-                coinExchangeExchange.Get(currencyPair),
                 krakenExchange.Get(currencyPair),
                 poloniexExchange.Get(currencyPair),
                 binanceExchange.Get(currencyPair),
@@ -52,8 +51,7 @@ namespace CryptoArbitrageSharp
                 exchangeResults[3],
                 exchangeResults[4],
                 exchangeResults[5],
-                exchangeResults[6],
-                exchangeResults[7]);
+                exchangeResults[6]);
 
             return result;
         }
