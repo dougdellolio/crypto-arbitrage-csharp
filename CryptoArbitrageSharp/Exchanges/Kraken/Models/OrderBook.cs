@@ -2,7 +2,7 @@
 
 namespace CryptoArbitrageSharp.Exchanges.Kraken.Models
 {
-    public class Pair
+    public class XLTCXXBT
     {
         public List<List<decimal>> Asks { get; set; }
 
@@ -11,7 +11,7 @@ namespace CryptoArbitrageSharp.Exchanges.Kraken.Models
 
     public class Result
     {
-        public Pair Pair { get; set; }
+        public XLTCXXBT XLTCXXBT { get; set; } //todo: This needs to be dynamic. Its hard coded to LTCBTC pair
     }
 
     public class OrderBook

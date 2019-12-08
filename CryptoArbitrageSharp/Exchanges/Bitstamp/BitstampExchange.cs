@@ -25,7 +25,7 @@ namespace CryptoArbitrageSharp.Exchanges.Bitstamp
             var bestBid = orderBook.Bids.First().First();
             var bestAsk = orderBook.Asks.First().First();
 
-            return new BestExchangeQuote(Exchange.Bitfinex.Name, bestBid, bestAsk);
+            return new BestExchangeQuote(Exchange.Bitstamp.Name, bestBid, bestAsk);
         }
     }
 }
